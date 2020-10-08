@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 
 namespace AspProjekt.Models
 {
-    public class TestModel : Controller
+    public class TestModel
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        public string ProductName { get; set; }
+        public string ProductDesc { get; set; }
+
+        public decimal ProductPrice { get; set; }
+
     }
 }

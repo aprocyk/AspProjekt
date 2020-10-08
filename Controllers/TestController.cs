@@ -2,20 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AspProjekt.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspProjekt.Controllers
 {
     public class TestController : Controller
     {
+        private readonly ITestRepository repository;
+
+        public TestController(ITestRepository repository)
+        {
+            this.repository = repository;
+        }
         public IActionResult Index()
         {
-            return View();
-        }
+            var othermodel = new TestIndexModel()
+            {
+                TodaysDate = DateTime.Now.ToString("dd/MM/yyyy")
 
-        public string StringValue()
-        {
-            return "Hello World";
+            };
+            return View(othermodel);
         }
 
         public IActionResult RedirectToGoogle()
@@ -27,15 +34,11 @@ namespace AspProjekt.Controllers
         {
             return Json(new {Name = "Jan", Surname = "Kowalski" });
         }
+       
         public IActionResult TestModel()
         {
-            var model = new List<TestModel>() {
-                new TestModel {},
-                new TestModel {},
-                new TestModel {}
-            }
-            return View(model);
+            return View(repository.GetItems());
         }
-
+        
     }
 }

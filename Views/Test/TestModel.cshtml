@@ -3,6 +3,13 @@
     ViewData["Title"] = "TestModel";
 }
 <h1>TestModel</h1>
-@foreach (var m in Model) { 
-    <p>@m.TestMessage</p>
-}
+
+<div>
+    @foreach (var p in @Model)
+    {
+        <p>Product: <b>@p.ProductName</b></p><br />
+        <p>Description: @p.ProductDesc</p><br />
+        <p>Price: @p.ProductPrice</p>
+        <hr />
+    }
+</div>
